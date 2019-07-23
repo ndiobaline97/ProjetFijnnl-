@@ -18,8 +18,26 @@ class Systeme
      */
     private $id;
 
+    /**
+     * @ORM\ManyToOne(targetEntity="App\Entity\Partenaire", inversedBy="systeme")
+     * @ORM\JoinColumn(nullable=false)
+     */
+    private $idsysteme;
+
     public function getId(): ?int
     {
         return $this->id;
+    }
+
+    public function getIdsysteme(): ?Partenaire
+    {
+        return $this->idsysteme;
+    }
+
+    public function setIdsysteme(?Partenaire $idsysteme): self
+    {
+        $this->idsysteme = $idsysteme;
+
+        return $this;
     }
 }
