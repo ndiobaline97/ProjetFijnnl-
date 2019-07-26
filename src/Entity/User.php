@@ -49,6 +49,11 @@ class User
      */
     private $partenaire;
 
+    /**
+     * @ORM\Column(type="string", length=255)
+     */
+    private $statut;
+
     public function getId(): ?int
     {
         return $this->id;
@@ -122,6 +127,18 @@ class User
     public function setPartenaire(?partenaire $partenaire): self
     {
         $this->partenaire = $partenaire;
+
+        return $this;
+    }
+
+    public function getStatut(): ?string
+    {
+        return $this->statut;
+    }
+
+    public function setStatut(string $statut): self
+    {
+        $this->statut = $statut;
 
         return $this;
     }

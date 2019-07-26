@@ -49,16 +49,15 @@ class Partenaire
      * @ORM\Column(type="integer")
      */
     private $nin;
-
-    /**
-     * @ORM\OneToMany(targetEntity="App\Entity\systeme", mappedBy="idsysteme", orphanRemoval=true)
-     */
-    private $systeme;
-
     /**
      * @ORM\OneToMany(targetEntity="App\Entity\User", mappedBy="partenaire", orphanRemoval=true)
      */
     private $iduser;
+
+    /**
+     * @ORM\Column(type="string", length=255)
+     */
+    private $statut;
 
     public function __construct()
     {
@@ -130,7 +129,9 @@ class Partenaire
 
         return $this;
     }
-
+/**
+ * 
+ */
     public function getNin(): ?int
     {
         return $this->nin;
@@ -142,38 +143,7 @@ class Partenaire
 
         return $this;
     }
-
-    /**
-     * @return Collection|systeme[]
-     */
-    public function getSysteme(): Collection
-    {
-        return $this->systeme;
-    }
-
-    public function addSysteme(systeme $systeme): self
-    {
-        if (!$this->systeme->contains($systeme)) {
-            $this->systeme[] = $systeme;
-            $systeme->setIdsysteme($this);
-        }
-
-        return $this;
-    }
-
-    public function removeSysteme(systeme $systeme): self
-    {
-        if ($this->systeme->contains($systeme)) {
-            $this->systeme->removeElement($systeme);
-            // set the owning side to null (unless already changed)
-            if ($systeme->getIdsysteme() === $this) {
-                $systeme->setIdsysteme(null);
-            }
-        }
-
-        return $this;
-    }
-
+    
     /**
      * @return Collection|User[]
      */
@@ -201,6 +171,18 @@ class Partenaire
                 $iduser->setPartenaire(null);
             }
         }
+
+        return $this;
+    }
+
+    public function getStatut(): ?string
+    {
+        return $this->statut;
+    }
+
+    public function setStatut(string $statut): self
+    {
+        $this->statut = $statut;
 
         return $this;
     }
